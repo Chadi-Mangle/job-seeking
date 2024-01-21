@@ -19,7 +19,30 @@ function messageScraping(message){
 
   var text = message.getPlainBody();
 
-  var sheetId = "your-google-sheet-id";
+  var sheetId = "your_sheet_id";
   var sheet = SpreadsheetApp.openById(sheetId);
-  sheet.appendRow([date,entreprise,jobs, text])
+
+  var data = sheet.getDataRange().getValues();
+  
+  var entrepriseColumn = 2; 
+  var lastRow = sheet.getLastRow();
+  var found = false;
+
+  for (var i = 1; i < lastRow; i++) {
+
+    if (data[i][entrepriseColumn - 1] === entreprise) {
+      sheet.getActiveSheet().getRange(i+1 , sheet.getLastColumn(), 1, 2).setValues([[date, text]]); 
+      found = true;
+      break;
+    }
+  }
+
+  if (!found){
+    var cellCandidature = sheet.getActiveSheet().getRange(1, 7)
+    var nbCandidature = cellCandidature.getValue()
+    
+    cellCandidature.setValue(nbCandidature+1)
+
+    sheet.appendRow([date, entreprise, jobs, text]);
+  }
 }
