@@ -1,6 +1,6 @@
 # Mettre en place le script permettant le suivi de ces candidatures. 
 
-## Google Script
+## Google Sheet
 
 Faut créer un Google Sheet et recuperer son id dans l'url 
 ![image](https://github.com/Chadi-Mangle/job-seeking/assets/118349600/692439b8-d7a5-4781-8b31-e20ee1a28f2c)
